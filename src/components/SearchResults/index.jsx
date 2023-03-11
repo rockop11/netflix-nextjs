@@ -1,10 +1,9 @@
 import { useContext } from "react";
-
 import MoviesContext from "context/MoviesContext";
-
-import styles from "./seacrhResults.module.css";
-
+//Components
 import { MovieCard } from "..";
+//Styles
+import styles from "./seacrhResults.module.css";
 
 export const SearchResults = () => {
   const { searchResults, resetSearch } = useContext(MoviesContext);
