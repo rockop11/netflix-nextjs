@@ -1,0 +1,45 @@
+.toggleMenu {
+  background-color: #141414;
+  color: #fff;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  width: 50%;
+  z-index: 3;
+  animation: fadeIn 0.2s;
+}
+
+.itemList {
+  padding: 15px 10px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+    left: -50px;
+  }
+  100% {
+    opacity: 1;
+    left: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .toggleMenu {
+    position: absolute;
+    width: 20%;
+    left: 80%;
+    animation: fadeInTablet 0.2s;
+  }
+
+  @keyframes fadeInTablet {
+    0% {
+      opacity: 1;
+      left: 100%;
+    }
+    100% {
+      opacity: 1;
+      left: 80%;
+    }
+  }
+}

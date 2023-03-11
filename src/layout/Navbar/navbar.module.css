@@ -1,0 +1,39 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+}
+
+.ul {
+  width: fit-content;
+  margin: 10px 15px;
+}
+
+.rightMenu {
+  display: flex;
+}
+
+.input {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding-left: 8px;
+  height: 30px;
+}
+
+.image {
+  display: none;
+  margin-left: 20px;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    display: none;
+  }
+
+  .image {
+    display: block;
+  }
+}

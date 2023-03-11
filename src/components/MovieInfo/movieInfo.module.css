@@ -1,0 +1,51 @@
+.container {
+  background-color: #000;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.closeModal {
+  background-color: #000000;
+  position: absolute;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 5%;
+  top: 2%;
+  z-index: 3;
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  background-color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.gradient {
+  height: 40px;
+  width: 100%;
+  margin-top: -40px;
+  position: absolute;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(0, 0, 0) 75%
+  );
+}
+
+.movieInfo {
+  display: flex;
+  width: 95%;
+}

@@ -1,0 +1,18 @@
+.cardContainer {
+  display: inline-block;
+  width: 200px;
+  margin: 2px;
+}
+
+@media (min-width: 768px) {
+  .cardContainer {
+    width: 30%;
+    margin-right: 5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cardContainer {
+    width: 17%;
+  }
+}

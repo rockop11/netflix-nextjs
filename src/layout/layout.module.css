@@ -1,0 +1,16 @@
+.layoutContainer {
+  /* border: 1px solid magenta; */
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(0deg, #000000a8, #000000a8),
+    url("../assets/images/background.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: none;
+  color: white;
+}
+
+.loggedLayout {
+  background-color: #141414;
+  color: #ffffff;
+}

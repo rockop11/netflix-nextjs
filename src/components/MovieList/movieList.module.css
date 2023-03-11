@@ -1,0 +1,17 @@
+.movieListContainer {
+  padding-left: 15px;
+  width: 100%;
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap;
+  padding-bottom: 20px;
+}
+
+.sectionTitle {
+  padding-left: 15px;
+  margin-bottom: 5px;
+}
+
+.movieListContainer::-webkit-scrollbar {
+  display: none;
+}
