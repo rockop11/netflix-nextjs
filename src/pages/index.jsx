@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
 import Head from "next/head";
-import { useUser } from "@auth0/nextjs-auth0/client";
+// import { useUser } from "@auth0/nextjs-auth0/client";
 import MoviesContext from "context/MoviesContext";
+
 //Components
 import { MovieList } from "@components/index";
 import { UnloggedContent } from "@components/index";
@@ -21,13 +22,12 @@ export default function Home({
   topRatedMovies,
   upcomingMovies,
 }) {
-  const { user } = useUser();
-  const { searchResults } = useContext(MoviesContext);
+  // const { user } = useUser();
+  const { user, searchResults } = useContext(MoviesContext);
+
   // console.log(searchResults);
 
-  useEffect(() => {
-
-  }, [searchResults]);
+  useEffect(() => {}, [searchResults]);
 
   return (
     <>

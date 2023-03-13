@@ -1,7 +1,5 @@
 import { useState, useContext } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import MoviesContext from "context/MoviesContext";
 //Components
 import Logo from "../../assets/images/netflix-3.svg";
@@ -13,9 +11,14 @@ import styles from "./navbar.module.css";
 import { BiMenu } from "react-icons/bi";
 
 export const Navbar = () => {
-  const { searchValueHandler, submitFormHandler, inputSearchRef } =
-    useContext(MoviesContext);
-  const { user } = useUser();
+  const {
+    searchValueHandler,
+    submitFormHandler,
+    inputSearchRef,
+    user,
+    loginFirebaseHandler,
+  } = useContext(MoviesContext);
+
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleNavMenu = () => {
@@ -38,7 +41,7 @@ export const Navbar = () => {
       </ul>
 
       <ul className={styles.ul}>
-        {user && user ? (
+        {user ? (
           <div className={styles.rightMenu}>
             <form onSubmit={submitFormHandler}>
               <input
@@ -51,7 +54,7 @@ export const Navbar = () => {
             </form>
             <Image
               className={styles.image}
-              src={user.picture}
+              src={user.photoURL}
               width={35}
               height={35}
               style={{
@@ -63,9 +66,7 @@ export const Navbar = () => {
             />
           </div>
         ) : (
-          <Link href="/api/auth/login">
-            <Button label="Iniciar sesión" />
-          </Link>
+          <Button label="Iniciar sesión" event={loginFirebaseHandler} />
         )}
 
         {toggleMenu && <ToggleMenu />}
