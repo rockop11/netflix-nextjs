@@ -1,8 +1,10 @@
-import { useUser } from "@auth0/nextjs-auth0/client";
+import { useContext } from "react";
+import MoviesContext from "context/MoviesContext";
 import styles from "./unloggedContent.module.css";
 
 export const UnloggedContent = () => {
-  const { user } = useUser();
+  const { user } = useContext(MoviesContext);
+
   return (
     <>
       {!user && (

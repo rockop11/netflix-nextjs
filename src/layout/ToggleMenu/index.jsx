@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { useContext } from "react";
+import MoviesContext from "context/MoviesContext";
 import styles from "./toggleMenu.module.css";
 
 import { Inter } from "next/font/google";
@@ -6,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const ToggleMenu = () => {
   const menuList = ["Peliculas", "Series", "Cuenta"];
+  const { logout } = useContext(MoviesContext);
 
   return (
     <div className={inter.className}>
@@ -18,11 +20,14 @@ export const ToggleMenu = () => {
           );
         })}
         <hr />
-        <Link href="/api/auth/logout">
-          <li style={{ textAlign: "center" }} className={styles.itemList}>
-            Cerrar sesión
-          </li>
-        </Link>
+
+        <li
+          style={{ textAlign: "center" }}
+          className={styles.itemList}
+          onClick={logout}
+        >
+          Cerrar sesión
+        </li>
       </div>
     </div>
   );
