@@ -1,14 +1,13 @@
 import { useContext, useEffect } from "react";
 import Head from "next/head";
-// import { useUser } from "@auth0/nextjs-auth0/client";
 import MoviesContext from "context/MoviesContext";
-
 //Components
 import { MovieList } from "@components/index";
 import { UnloggedContent } from "@components/index";
 import { SearchResults } from "@components/index";
 //Services
 import {
+  getFirestore,
   getPopularMovies,
   getTopRatedMovies,
   getUpcomingMovies,
@@ -22,12 +21,7 @@ export default function Home({
   topRatedMovies,
   upcomingMovies,
 }) {
-  // const { user } = useUser();
   const { user, searchResults } = useContext(MoviesContext);
-
-  // console.log(searchResults);
-
-  useEffect(() => {}, [searchResults]);
 
   return (
     <>
@@ -58,10 +52,7 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps(context) {
-  // const { data } = await axios.get(
-  //   "https://netflix-nextjs-6e9af-default-rtdb.firebaseio.com/movies.json"
-  // );
+export async function getServerSideProps() {
   const popularMovies = await getPopularMovies();
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();

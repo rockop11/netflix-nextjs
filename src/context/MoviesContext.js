@@ -1,10 +1,6 @@
 import { createContext, useState, useRef } from "react";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 import { searchMovies } from "services";
 
 const MoviesContext = createContext({
@@ -24,13 +20,11 @@ export const MoviesContextProvider = ({ children }) => {
 
   const loginFirebaseHandler = async () => {
     const provider = new GoogleAuthProvider();
-    const auth = getAuth();
     const { user } = await signInWithPopup(auth, provider);
     setUser(user);
   };
 
   const logout = async () => {
-    const auth = getAuth();
     signOut(auth);
     setUser(null);
   };

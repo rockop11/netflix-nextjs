@@ -1,4 +1,6 @@
 import axios from "axios";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const language = "&language=es-ES";
 
@@ -53,6 +55,13 @@ export const searchMovies = async (value) => {
   ).catch((err) => {
     console.log(err);
   });
-  // console.log(data);
   return data.results;
+};
+
+export const getFirestore = async () => {
+  const { docs } = await getDocs(collection(db, "usuarios"));
+  console.log(docs);
+  // data.forEach((doc) => {
+  //   console.log(`${doc.id} => ${doc.data()}`);
+  // });
 };
