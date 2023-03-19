@@ -1,23 +1,21 @@
 import { useState, useContext } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
+import Link from "next/link";
 import MoviesContext from "context/MoviesContext";
 //Components
 import Logo from "../../assets/images/netflix-3.svg";
 import { Button } from "@layout/Button";
 import { ToggleMenu } from "@layout/ToggleMenu";
-//Styles
-import styles from "./navbar.module.css";
 //Icon
 import { BiMenu } from "react-icons/bi";
+//Styles
+import styles from "./navbar.module.css";
 
 export const Navbar = () => {
-  const {
-    searchValueHandler,
-    submitFormHandler,
-    inputSearchRef,
-    user,
-    loginFirebaseHandler,
-  } = useContext(MoviesContext);
+  const { searchValueHandler, submitFormHandler, inputSearchRef } =
+    useContext(MoviesContext);
+  const { user } = useUser();
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -54,7 +52,7 @@ export const Navbar = () => {
             </form>
             <Image
               className={styles.image}
-              src={user.photoURL}
+              src={user.picture}
               width={35}
               height={35}
               style={{
@@ -66,7 +64,9 @@ export const Navbar = () => {
             />
           </div>
         ) : (
-          <Button label="Iniciar sesión" event={loginFirebaseHandler} />
+          <Link href={"/api/auth/login"}>
+            <Button label="Iniciar sesión" />
+          </Link>
         )}
 
         {toggleMenu && <ToggleMenu />}
@@ -74,16 +74,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-//IMAGEN DE PERFIL
-// <Image
-//   src={user.picture}
-//   width={35}
-//   height={35}
-//   style={{
-//     borderRadius: "8px",
-//   }}
-//   alt={"profile-pic"}
-//   priority
-//   onClick={handleNavMenu}
-// />

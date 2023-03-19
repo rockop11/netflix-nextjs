@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Head from "next/head";
 import MoviesContext from "context/MoviesContext";
+import { useUser } from "@auth0/nextjs-auth0/client";
 //Components
 import { MovieList } from "@components/index";
 import { UnloggedContent } from "@components/index";
@@ -21,7 +22,8 @@ export default function Home({
   topRatedMovies,
   upcomingMovies,
 }) {
-  const { user, searchResults } = useContext(MoviesContext);
+  const { searchResults } = useContext(MoviesContext);
+  const { user } = useUser();
 
   return (
     <>
@@ -33,8 +35,7 @@ export default function Home({
       </Head>
 
       <div className={inter.className}>
-        <UnloggedContent />
-        {user && (
+        {user ? (
           <>
             {searchResults.length ? (
               <SearchResults />
@@ -46,6 +47,8 @@ export default function Home({
               </>
             )}
           </>
+        ) : (
+          <UnloggedContent />
         )}
       </div>
     </>
