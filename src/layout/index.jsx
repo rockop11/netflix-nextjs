@@ -1,17 +1,11 @@
-import { useContext } from "react";
-import MoviesContext from "context/MoviesContext";
-
+import { useUser } from "@auth0/nextjs-auth0/client";
 //Components
 import { Navbar } from "./Navbar";
 //Styles
 import styles from "./layout.module.css";
 
 export const Layout = ({ children }) => {
-  const { user } = useContext(MoviesContext);
-  // const { user, error, isLoading } = useUser();
-
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>{error.message}</div>;
+  const { user } = useUser();
 
   return (
     <>
