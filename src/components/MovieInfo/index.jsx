@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import MoviesContext from "context/MoviesContext";
 import Link from "next/link";
 import Image from "next/image";
 //Icon
@@ -6,6 +8,8 @@ import { BiX, BiStar, BiLike } from "react-icons/bi";
 import styles from "./movieInfo.module.css";
 
 export const MovieInfo = ({ movie }) => {
+  const { addMovieToFavorites } = useContext(MoviesContext);
+
   const imagePath = "https://image.tmdb.org/t/p/original";
   const movieYear = movie.release_date.split("-")[0];
 
@@ -16,7 +20,10 @@ export const MovieInfo = ({ movie }) => {
           <BiX size={"35px"} />
         </div>
       </Link>
-      <div className={styles.iconContainer}>
+      <div
+        className={styles.iconContainer}
+        onClick={() => addMovieToFavorites(movie)}
+      >
         <BiStar size={"25px"} />
       </div>
       <Image
