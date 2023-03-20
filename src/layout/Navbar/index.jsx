@@ -35,7 +35,9 @@ export const Navbar = () => {
             className={styles.menu}
           />
         )}
-        <Image src={Logo} style={image} alt={"logo-netflix"} priority />
+        <Link href={"/"}>
+          <Image src={Logo} style={image} alt={"logo-netflix"} priority />
+        </Link>
       </ul>
 
       <ul className={styles.ul}>

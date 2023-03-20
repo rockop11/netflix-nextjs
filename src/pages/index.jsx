@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import MoviesContext from "context/MoviesContext";
-import { useUser } from "@auth0/nextjs-auth0/client";
 //Components
 import { MovieList } from "@components/index";
-import { UnloggedContent } from "@components/index";
 import { SearchResults } from "@components/index";
 //Services
 import {
@@ -22,8 +22,23 @@ export default function Home({
   topRatedMovies,
   upcomingMovies,
 }) {
-  const { searchResults } = useContext(MoviesContext);
+  const { searchResults, favoritesList } = useContext(MoviesContext);
   const { user } = useUser();
+  const router = useRouter();
+  console.log(favoritesList);
+
+  const getFirebaseData = async () => {
+    await getFirestore(user.email);
+  };
+
+  useEffect(() => {
+    if (user) {
+      getFirebaseData();
+    } else {
+      router.replace("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -35,7 +50,7 @@ export default function Home({
       </Head>
 
       <div className={inter.className}>
-        {user ? (
+        {user && (
           <>
             {searchResults.length ? (
               <SearchResults />
@@ -47,15 +62,13 @@ export default function Home({
               </>
             )}
           </>
-        ) : (
-          <UnloggedContent />
         )}
       </div>
     </>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const popularMovies = await getPopularMovies();
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();

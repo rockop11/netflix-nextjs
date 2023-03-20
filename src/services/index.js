@@ -58,10 +58,16 @@ export const searchMovies = async (value) => {
   return data.results;
 };
 
-export const getFirestore = async () => {
-  const { docs } = await getDocs(collection(db, "usuarios"));
-  console.log(docs);
+export const getFirestore = async (userEmail) => {
+  const { docs } = await getDocs(collection(db, `usuarios`));
+  const filteredDocs = docs.filter((doc) => {
+    return doc._key.path.segments[6] === userEmail;
+  });
+  console.log(filteredDocs);
+  // console.log(docs[0]._key.path.segments[6]);
   // data.forEach((doc) => {
   //   console.log(`${doc.id} => ${doc.data()}`);
   // });
 };
+
+// doc._key.path.segments == "poncerodrigom@gmail.com"
