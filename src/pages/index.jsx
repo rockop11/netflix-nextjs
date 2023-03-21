@@ -8,7 +8,6 @@ import { MovieList } from "@components/index";
 import { SearchResults } from "@components/index";
 //Services
 import {
-  getFirestore,
   getPopularMovies,
   getTopRatedMovies,
   getUpcomingMovies,
@@ -22,19 +21,12 @@ export default function Home({
   topRatedMovies,
   upcomingMovies,
 }) {
-  const { searchResults, favoritesList } = useContext(MoviesContext);
+  const { searchResults } = useContext(MoviesContext);
   const { user } = useUser();
   const router = useRouter();
-  console.log(favoritesList);
-
-  const getFirebaseData = async () => {
-    await getFirestore(user.email);
-  };
 
   useEffect(() => {
-    if (user) {
-      getFirebaseData();
-    } else {
+    if (!user) {
       router.replace("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,7 +60,7 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const popularMovies = await getPopularMovies();
   const topRatedMovies = await getTopRatedMovies();
   const upcomingMovies = await getUpcomingMovies();

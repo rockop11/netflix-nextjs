@@ -58,16 +58,16 @@ export const searchMovies = async (value) => {
   return data.results;
 };
 
-export const getFirestore = async (userEmail) => {
+export const getFavoritesMoviesFromFirestore = async (userEmail) => {
   const { docs } = await getDocs(collection(db, `usuarios`));
-  const filteredDocs = docs.filter((doc) => {
-    return doc._key.path.segments[6] === userEmail;
-  });
-  console.log(filteredDocs);
-  // console.log(docs[0]._key.path.segments[6]);
-  // data.forEach((doc) => {
-  //   console.log(`${doc.id} => ${doc.data()}`);
-  // });
-};
 
-// doc._key.path.segments == "poncerodrigom@gmail.com"
+  const filteredDoc = docs.filter((doc) => {
+    return doc.id === userEmail;
+  });
+
+  const [movies] = filteredDoc.map((doc) => {
+    return doc.data().movies;
+  });
+
+  return movies;
+};
