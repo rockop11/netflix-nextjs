@@ -1,6 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import MoviesContext from "context/MoviesContext";
+//Components
+import { MovieCard } from "@components/index";
+import { Loader } from "@components/index";
 //Services
 import { getFavoritesMoviesFromFirestore } from "services";
 //Google Font
@@ -8,30 +10,33 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 const FavoritesPage = () => {
-  const { favoritesList } = useContext(MoviesContext);
   const { user } = useUser();
 
   const [firestoreData, setFirestoreData] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   const getFirestoreHandler = async () => {
     const data = await getFavoritesMoviesFromFirestore(user.email);
     setFirestoreData(data);
+    setLoader(false);
   };
 
   useEffect(() => {
     getFirestoreHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [favoritesList]);
+  }, []);
+
+  if (loader) {
+    return <Loader />;
+  }
 
   return (
     <div className={inter.className}>
-      {firestoreData.length ? (
-        firestoreData.map((movie, i) => {
-          return <p key={i}>{movie.title}</p>;
-        })
-      ) : (
-        <h3>No hay peliculas agregadas todavia...</h3>
-      )}
+      {!firestoreData ? <h3>No hay Movies</h3> : <h3>Hay Movies</h3>}
+
+      {firestoreData.map((movie) => {
+        return <MovieCard movie={movie} key={movie.id} />;
+      })}
     </div>
   );
 };

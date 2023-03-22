@@ -1,5 +1,5 @@
 import axios from "axios";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const language = "&language=es-ES";
@@ -59,15 +59,30 @@ export const searchMovies = async (value) => {
 };
 
 export const getFavoritesMoviesFromFirestore = async (userEmail) => {
-  const { docs } = await getDocs(collection(db, `usuarios`));
+  const { docs } = await getDocs(collection(db, `usuarios`)).catch((err) => {
+    console.log(err);
+  });
 
   const filteredDoc = docs.filter((doc) => {
     return doc.id === userEmail;
   });
 
-  const [movies] = filteredDoc.map((doc) => {
-    return doc.data().movies;
+  const [favoritesList] = filteredDoc.map((doc) => {
+    return doc.data().favoritesList;
   });
 
-  return movies;
+  return favoritesList;
+};
+
+export const setDocumentFirstLog = async (userEmail) => {
+  await getDocs(collection(db, `usuarios`)).then(({ docs }) => {
+    const filtered = docs.filter((user) => {
+      return user.id === userEmail;
+    });
+
+    if (!filtered.length) {
+      console.log("no hay user");
+      setDoc(doc(db, "usuarios", `${userEmail}`), { favoritesList: [] });
+    }
+  });
 };
