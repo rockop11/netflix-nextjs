@@ -11,6 +11,7 @@ import {
   getPopularMovies,
   getTopRatedMovies,
   getUpcomingMovies,
+  setDocumentFirstLog,
 } from "services";
 //Google Font
 import { Inter } from "next/font/google";
@@ -28,6 +29,8 @@ export default function Home({
   useEffect(() => {
     if (!user) {
       router.replace("/login");
+    } else {
+      setDocumentFirstLog(user.email);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
