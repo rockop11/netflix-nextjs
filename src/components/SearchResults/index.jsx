@@ -3,11 +3,10 @@ import MoviesContext from "context/MoviesContext";
 //Components
 import { MovieCard } from "..";
 //Styles
-import styles from "./seacrhResults.module.css";
+import styles from "./searchResults.module.css";
 
 export const SearchResults = () => {
   const { searchResults, resetSearch } = useContext(MoviesContext);
-  const imagePath = "https://image.tmdb.org/t/p/w500";
 
   return (
     <div className={styles.pageContainer}>

@@ -59,6 +59,7 @@ export const Navbar = () => {
               height={35}
               style={{
                 borderRadius: "8px",
+                cursor: "pointer",
               }}
               alt={"profile-pic"}
               priority

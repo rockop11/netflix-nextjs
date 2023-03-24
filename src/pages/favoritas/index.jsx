@@ -32,11 +32,12 @@ const FavoritesPage = () => {
 
   return (
     <div className={inter.className}>
-      {!firestoreData ? <h3>No hay Movies</h3> : <h3>Hay Movies</h3>}
+      {!firestoreData.length && <h3>No hay Movies</h3>}
 
-      {firestoreData.map((movie) => {
-        return <MovieCard movie={movie} key={movie.id} />;
-      })}
+      {firestoreData &&
+        firestoreData.map((movie) => {
+          return <MovieCard movie={movie} key={movie.id} />;
+        })}
     </div>
   );
 };

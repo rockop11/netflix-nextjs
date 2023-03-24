@@ -81,7 +81,6 @@ export const setDocumentFirstLog = async (userEmail) => {
     });
 
     if (!filtered.length) {
-      console.log("no hay user");
       setDoc(doc(db, "usuarios", `${userEmail}`), { favoritesList: [] });
     }
   });
