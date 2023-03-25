@@ -1,30 +1,34 @@
 import { useContext } from "react";
+import { useRouter } from "next/router";
 import MoviesContext from "context/MoviesContext";
-import Link from "next/link";
 import Image from "next/image";
 //Icon
-import { BiX, BiStar, BiLike } from "react-icons/bi";
+import { HiOutlineStar, HiStar, HiThumbUp, HiX } from "react-icons/hi";
 //Styles
 import styles from "./movieInfo.module.css";
 
 export const MovieInfo = ({ movie }) => {
   const { addMovieToFavorites } = useContext(MoviesContext);
+  const router = useRouter();
+
+  const handleCloseMovieDetail = () => {
+    router.back();
+  };
 
   const imagePath = "https://image.tmdb.org/t/p/original";
   const movieYear = movie.release_date.split("-")[0];
 
   return (
     <div className={styles.container}>
-      <Link href="/">
-        <div className={styles.closeModal}>
-          <BiX size={"35px"} />
-        </div>
-      </Link>
+      <div className={styles.closeModal} onClick={handleCloseMovieDetail}>
+        <HiX size={"25px"} />
+      </div>
       <div
         className={styles.iconContainer}
         onClick={() => addMovieToFavorites(movie)}
       >
-        <BiStar size={"25px"} />
+        <HiOutlineStar size={"25px"} />
+        {/* <HiStar size={"25px"} color="yellow" /> */}
       </div>
       <Image
         width={420}
@@ -51,7 +55,7 @@ export const MovieInfo = ({ movie }) => {
               padding: " 5px 10px",
             }}
           >
-            <BiLike size={"20px"} />
+            <HiThumbUp size={"20px"} />
             <span style={{ paddingLeft: "8px" }}>{movie.vote_average}</span>
           </div>
 

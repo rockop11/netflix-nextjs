@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-left: 10px;
+}

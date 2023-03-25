@@ -5,9 +5,8 @@ import { MovieCard } from "@components/index";
 import { Loader } from "@components/index";
 //Services
 import { getFavoritesMoviesFromFirestore } from "services";
-//Google Font
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+//Styles
+import styles from "./favorites.module.css";
 
 const FavoritesPage = () => {
   const { user } = useUser();
@@ -31,7 +30,7 @@ const FavoritesPage = () => {
   }
 
   return (
-    <div className={inter.className}>
+    <div className={styles.container}>
       {!firestoreData.length && <h3>No hay Movies</h3>}
 
       {firestoreData &&
