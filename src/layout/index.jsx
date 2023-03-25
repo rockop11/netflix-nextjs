@@ -4,6 +4,9 @@ import { Loader } from "@components/index";
 import { Navbar } from "./Navbar";
 //Styles
 import styles from "./layout.module.css";
+//Google Font
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 
 export const Layout = ({ children }) => {
   const { user, isLoading } = useUser();
@@ -13,7 +16,7 @@ export const Layout = ({ children }) => {
   }
 
   return (
-    <>
+    <div className={inter.className}>
       {!user && (
         <div className={styles.layoutContainer}>
           <Navbar />
@@ -26,6 +29,6 @@ export const Layout = ({ children }) => {
           {children}
         </div>
       )}
-    </>
+    </div>
   );
 };

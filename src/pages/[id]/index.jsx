@@ -1,12 +1,9 @@
 import { MovieInfo } from "@components/index";
 import { getMovieDetail } from "services";
 
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
-
 const MovieDetail = ({ movieDetail }) => {
   return (
-    <div className={inter.className}>
+    <div>
       <MovieInfo movie={movieDetail} />
     </div>
   );

@@ -13,9 +13,6 @@ import {
   getUpcomingMovies,
   setDocumentFirstLog,
 } from "services";
-//Google Font
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({
   popularMovies,
@@ -44,7 +41,7 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={inter.className}>
+      <div>
         {user && (
           <>
             {searchResults.length ? (
