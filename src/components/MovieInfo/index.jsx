@@ -1,7 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import MoviesContext from "context/MoviesContext";
 import Image from "next/image";
+//Services
+import { getFavoritesMoviesFromFirestore } from "services";
 //Icon
 import { HiOutlineStar, HiStar, HiThumbUp, HiX } from "react-icons/hi";
 //Styles
@@ -9,14 +12,30 @@ import styles from "./movieInfo.module.css";
 
 export const MovieInfo = ({ movie }) => {
   const { addMovieToFavorites } = useContext(MoviesContext);
+  const { user } = useUser();
   const router = useRouter();
+  const { id } = router.query;
+
+  const imagePath = "https://image.tmdb.org/t/p/original";
+  const movieYear = movie.release_date.split("-")[0];
+
+  const [containsMovie, setContainesMovie] = useState(null);
+
+  const getFavoritesMovies = async () => {
+    const moviesList = await getFavoritesMoviesFromFirestore(user.email);
+    const isFavorite = moviesList.find((movie) => {
+      return movie.id == id;
+    });
+    setContainesMovie(isFavorite);
+  };
 
   const handleCloseMovieDetail = () => {
     router.back();
   };
 
-  const imagePath = "https://image.tmdb.org/t/p/original";
-  const movieYear = movie.release_date.split("-")[0];
+  useEffect(() => {
+    getFavoritesMovies();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -27,8 +46,11 @@ export const MovieInfo = ({ movie }) => {
         className={styles.iconContainer}
         onClick={() => addMovieToFavorites(movie)}
       >
-        <HiOutlineStar size={"25px"} />
-        {/* <HiStar size={"25px"} color="yellow" /> */}
+        {containsMovie ? (
+          <HiStar size={"25px"} color="yellow" />
+        ) : (
+          <HiOutlineStar size={"25px"} />
+        )}
       </div>
       <Image
         width={420}

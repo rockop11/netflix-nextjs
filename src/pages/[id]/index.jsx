@@ -3,9 +3,9 @@ import { getMovieDetail } from "services";
 
 const MovieDetail = ({ movieDetail }) => {
   return (
-    <div>
+    <>
       <MovieInfo movie={movieDetail} />
-    </div>
+    </>
   );
 };
 
