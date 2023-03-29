@@ -2,7 +2,7 @@ import { createContext, useState, useRef } from "react";
 import { updateDoc, doc, arrayUnion } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useUser } from "@auth0/nextjs-auth0/client";
-
+//Services
 import { searchMovies } from "services";
 
 const MoviesContext = createContext({
