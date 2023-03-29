@@ -6,6 +6,8 @@ import MoviesContext from "context/MoviesContext";
 //Components
 import { MovieList } from "@components/index";
 import { SearchResults } from "@components/index";
+//Layout
+import { Layout } from "@layout/Layout";
 //Services
 import {
   getPopularMovies,
@@ -25,7 +27,7 @@ export default function Home({
 
   useEffect(() => {
     if (!user) {
-      router.replace("/login");
+      router.push("/login");
     } else {
       setDocumentFirstLog(user.email);
     }
@@ -59,6 +61,10 @@ export default function Home({
     </>
   );
 }
+
+Home.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
 
 export async function getServerSideProps() {
   const popularMovies = await getPopularMovies();

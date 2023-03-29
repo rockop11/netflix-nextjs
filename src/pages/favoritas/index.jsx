@@ -3,6 +3,8 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 //Components
 import { MovieCard } from "@components/index";
 import { Loader } from "@components/index";
+//Layout
+import { Layout } from "@layout/Layout";
 //Services
 import { getFavoritesMoviesFromFirestore } from "services";
 //Styles
@@ -42,3 +44,7 @@ const FavoritesPage = () => {
 };
 
 export default FavoritesPage;
+
+FavoritesPage.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
