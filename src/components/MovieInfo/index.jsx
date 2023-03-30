@@ -94,8 +94,6 @@ export const MovieInfo = ({ movie }) => {
           </>
         </div>
       </div>
-
-      {/* {movie list} */}
     </div>
   );
 };

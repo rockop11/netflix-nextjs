@@ -40,6 +40,15 @@ export const getMovieDetail = async (id) => {
   return data;
 };
 
+export const getSimilarMovies = async (id) => {
+  const { data } = await axios(
+    `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/${id}/similar?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}${language}&page=1`
+  ).catch((err) => {
+    console.log(err);
+  });
+  return data.results;
+};
+
 export const getMovieImages = async (id) => {
   const { data } = await axios(
     `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/${id}/images?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
