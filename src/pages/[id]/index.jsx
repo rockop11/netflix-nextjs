@@ -6,11 +6,7 @@ import { Layout } from "@layout/Layout";
 import { getMovieDetail } from "services";
 
 const MovieDetail = ({ movieDetail }) => {
-  return (
-    <>
-      <MovieInfo movie={movieDetail} />
-    </>
-  );
+  return <MovieInfo movie={movieDetail} />;
 };
 
 export default MovieDetail;

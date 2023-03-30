@@ -35,6 +35,7 @@ export const MovieInfo = ({ movie }) => {
 
   useEffect(() => {
     getFavoritesMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -52,19 +53,18 @@ export const MovieInfo = ({ movie }) => {
           <HiOutlineStar size={"25px"} />
         )}
       </div>
-      <Image
-        width={420}
-        height={20}
-        src={imagePath + movie.poster_path}
-        alt={`${movie.title}-picture`}
-        style={{
-          width: "100%",
-          height: "550px",
-          borderRadius: "15px 15px 0px 0px",
-        }}
-        priority
-      />
+
+      <div className={styles.imageContainer}>
+        <Image
+          fill
+          src={imagePath + movie.poster_path}
+          alt={`${movie.title}-picture`}
+          priority
+        />
+      </div>
+
       <div className={styles.gradient} />
+
       <div className={styles.movieInfo}>
         <div className={styles.leftSection}>
           <p style={{ padding: "5px 10px" }}>
@@ -81,16 +81,8 @@ export const MovieInfo = ({ movie }) => {
             <span style={{ paddingLeft: "8px" }}>{movie.vote_average}</span>
           </div>
 
-          <h3 style={{ padding: " 5px 10px" }}>{movie.title}</h3>
-          <p
-            style={{
-              fontSize: "14px",
-              padding: "10px",
-              width: "80%",
-            }}
-          >
-            {movie.overview}
-          </p>
+          <h3 className={styles.movieTitle}>{movie.title}</h3>
+          <p className={styles.movieOverview}>{movie.overview}</p>
         </div>
 
         <div className={styles.rightSection}>
