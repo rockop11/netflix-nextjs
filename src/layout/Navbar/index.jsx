@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,12 +17,23 @@ export const Navbar = () => {
   const { searchValueHandler, submitFormHandler, inputSearchRef } =
     useContext(MoviesContext);
   const { user } = useUser();
+  const router = useRouter();
+  const pathname = router.pathname;
 
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [hideSearchBar, setHideSearchBar] = useState(false);
 
   const handleNavMenu = () => {
     setToggleMenu(!toggleMenu);
   };
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setHideSearchBar(true);
+    } else {
+      setHideSearchBar(false);
+    }
+  }, [hideSearchBar, pathname]);
 
   const image = { width: "100px", height: "40px", marginLeft: "15px" };
 
@@ -43,15 +55,17 @@ export const Navbar = () => {
       <ul className={styles.ul}>
         {user ? (
           <div className={styles.rightMenu}>
-            <form onSubmit={submitFormHandler}>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Buscar"
-                onChange={searchValueHandler}
-                ref={inputSearchRef}
-              />
-            </form>
+            {!hideSearchBar && (
+              <form onSubmit={submitFormHandler}>
+                <input
+                  className={styles.input}
+                  type="text"
+                  placeholder="Buscar"
+                  onChange={searchValueHandler}
+                  ref={inputSearchRef}
+                />
+              </form>
+            )}
             <Image
               className={styles.image}
               src={user.picture}
