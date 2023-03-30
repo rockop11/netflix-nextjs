@@ -1,12 +1,17 @@
 //Componets
-import { MovieInfo } from "@components/index";
+import { MovieInfo, MovieList } from "@components/index";
 //Layout
 import { Layout } from "@layout/Layout";
 //Service
-import { getMovieDetail } from "services";
+import { getMovieDetail, getSimilarMovies } from "services";
 
-const MovieDetail = ({ movieDetail }) => {
-  return <MovieInfo movie={movieDetail} />;
+const MovieDetail = ({ movieDetail, similarMovies }) => {
+  return (
+    <>
+      <MovieInfo movie={movieDetail} />
+      <MovieList movies={similarMovies} title={"Títulos Similares"} />
+    </>
+  );
 };
 
 export default MovieDetail;
@@ -18,10 +23,12 @@ MovieDetail.getLayout = function getLayout(page) {
 export const getServerSideProps = async (context) => {
   const { params } = context;
   const movieDetail = await getMovieDetail(params.id);
+  const similarMovies = await getSimilarMovies(params.id);
 
   return {
     props: {
       movieDetail,
+      similarMovies,
     },
   };
 };
