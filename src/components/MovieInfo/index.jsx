@@ -50,13 +50,16 @@ export const MovieInfo = ({ movie }) => {
         {containsMovie ? (
           <HiStar size={"25px"} color="yellow" />
         ) : (
-          <HiOutlineStar size={"25px"} />
+          <HiOutlineStar size={"20px"} />
         )}
       </div>
 
       <div className={styles.imageContainer}>
         <Image
           fill
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
           src={imagePath + movie.poster_path}
           alt={`${movie.title}-picture`}
           priority
