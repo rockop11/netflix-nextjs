@@ -1,9 +1,9 @@
 import { createContext, useState, useRef } from "react";
-import { updateDoc, doc, arrayUnion } from "firebase/firestore";
+import { updateDoc, doc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useUser } from "@auth0/nextjs-auth0/client";
 //Services
-import { searchMovies } from "services";
+import { searchMovies, getFavoritesMoviesFromFirestore } from "services";
 
 const MoviesContext = createContext({
   showMovieInfoHandler: () => {},
@@ -21,6 +21,18 @@ export const MoviesContextProvider = ({ children }) => {
   const addMovieToFavorites = async (movie) => {
     await updateDoc(doc(db, "usuarios", `${user.email}`), {
       favoritesList: arrayUnion(movie),
+    });
+  };
+
+  const deleteMovieFromFavorites = async (id) => {
+    const favoritesMovies = await getFavoritesMoviesFromFirestore(user.email);
+
+    const [movieToDelete] = favoritesMovies.filter((movie) => {
+      return movie.id === id;
+    });
+
+    await updateDoc(doc(db, "usuarios", `${user.email}`), {
+      favoritesList: arrayRemove(movieToDelete),
     });
   };
 
@@ -51,6 +63,7 @@ export const MoviesContextProvider = ({ children }) => {
     submitFormHandler,
     resetSearch,
     addMovieToFavorites,
+    deleteMovieFromFavorites,
     inputSearchRef,
   };
 
