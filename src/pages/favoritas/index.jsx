@@ -29,7 +29,7 @@ const FavoritesPage = () => {
   useEffect(() => {
     getFirestoreHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [firestoreData, user]);
+  }, []);
 
   if (loader) {
     return <Loader />;
@@ -61,10 +61,4 @@ export default FavoritesPage;
 
 FavoritesPage.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
-};
-
-export const getServerSideProps = (context) => {
-  return {
-    props: {},
-  };
 };

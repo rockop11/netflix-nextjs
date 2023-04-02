@@ -1,4 +1,5 @@
 import { createContext, useState, useRef } from "react";
+import { useRouter } from "next/router";
 import { updateDoc, doc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -11,6 +12,7 @@ const MoviesContext = createContext({
 
 export const MoviesContextProvider = ({ children }) => {
   const { user } = useUser();
+  const router = useRouter();
 
   const inputSearchRef = useRef(null);
 
@@ -34,6 +36,8 @@ export const MoviesContextProvider = ({ children }) => {
     await updateDoc(doc(db, "usuarios", `${user.email}`), {
       favoritesList: arrayRemove(movieToDelete),
     });
+
+    router.reload();
   };
 
   const showMovieInfoHandler = () => {
