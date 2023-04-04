@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import MoviesContext from "context/MoviesContext";
 //Components
-import { MovieCard } from "@components/index";
+import { FavMovieCard } from "@components/index";
 import { Loader } from "@components/index";
 //Layout
 import { Layout } from "@layout/Layout";
@@ -37,7 +37,7 @@ const FavoritesPage = () => {
 
   return (
     <div className={styles.container}>
-      {!firestoreData.length && <h3>No hay Movies</h3>}
+      {!firestoreData.length && <h3>Aún no has agregado Peliculas...</h3>}
 
       {firestoreData &&
         firestoreData.map((movie) => {
@@ -49,7 +49,7 @@ const FavoritesPage = () => {
               >
                 <HiTrash size={"25px"} />
               </div>
-              <MovieCard movie={movie} />
+              <FavMovieCard movie={movie} />
             </div>
           );
         })}

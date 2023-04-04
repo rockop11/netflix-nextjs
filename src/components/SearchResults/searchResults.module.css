@@ -19,9 +19,35 @@
 
 .resultsContainer {
   width: 100%;
-  padding-left: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
+}
+
+.movieContainer {
+  margin: 0 auto 10px;
+  width: 45%;
+}
+
+@media (min-width: 768px) {
+  .movieContainer {
+    width: 30%;
+    margin: 5px;
+  }
+
+  .button {
+    margin-right: 4%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movieContainer {
+    width: 20%;
+    margin: 25px;
+  }
+
+  .button {
+    margin-right: 3%;
+  }
 }

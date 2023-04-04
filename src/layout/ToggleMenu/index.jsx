@@ -1,13 +1,11 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
 import styles from "./toggleMenu.module.css";
 
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-export const ToggleMenu = () => {
-  const router = useRouter();
-  const menuList = ["Peliculas", "Series", "Favoritas", "Cuenta"];
+export const ToggleMenu = ({ handleCloseNavMenu }) => {
+  const menuList = ["Favoritas"];
 
   return (
     <div className={inter.className}>
@@ -15,7 +13,9 @@ export const ToggleMenu = () => {
         {menuList.map((item, i) => {
           return (
             <li className={styles.itemList} key={i}>
-              <Link href={"/favoritas"}>{item}</Link>
+              <Link href={"/favoritas"} onClick={handleCloseNavMenu}>
+                {item}
+              </Link>
             </li>
           );
         })}

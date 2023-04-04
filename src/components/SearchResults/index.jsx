@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import MoviesContext from "context/MoviesContext";
 //Components
-import { MovieCard } from "..";
+import { FavMovieCard } from "@components/index";
 //Styles
 import styles from "./searchResults.module.css";
 
@@ -15,7 +15,11 @@ export const SearchResults = () => {
       </button>
       <div className={styles.resultsContainer}>
         {searchResults.map((movie) => {
-          return <MovieCard movie={movie} key={movie.id} />;
+          return (
+            <div className={styles.movieContainer} key={movie.id}>
+              <FavMovieCard movie={movie} />
+            </div>
+          );
         })}
       </div>
     </div>
