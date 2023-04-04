@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import NoImage from "@assets/images/no-image.jpeg";
 //Context
 import MoviesContext from "context/MoviesContext";
 //Styles
@@ -15,7 +16,11 @@ export const MovieCard = ({ movie }) => {
       <Link href={`/${movie.id}`}>
         <div className={styles.cardContainer} onClick={showMovieInfoHandler}>
           <Image
-            src={imagePath + movie.poster_path}
+            src={
+              movie.poster_path !== null
+                ? `${imagePath}${movie.poster_path}`
+                : NoImage
+            }
             width={300}
             height={350}
             style={{

@@ -27,6 +27,10 @@ export const Navbar = () => {
     setToggleMenu(!toggleMenu);
   };
 
+  const handleCloseNavMenu = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
   useEffect(() => {
     if (pathname !== "/") {
       setHideSearchBar(true);
@@ -86,7 +90,7 @@ export const Navbar = () => {
           </Link>
         )}
 
-        {toggleMenu && <ToggleMenu />}
+        {toggleMenu && <ToggleMenu handleCloseNavMenu={handleCloseNavMenu} />}
       </ul>
     </nav>
   );

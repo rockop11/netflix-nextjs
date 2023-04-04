@@ -3,9 +3,3 @@
   width: 200px;
   margin: 2px;
 }
-
-@media (min-width: 768px) {
-  .cardContainer {
-    margin-right: 5px;
-  }
-}

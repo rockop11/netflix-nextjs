@@ -1,3 +1,4 @@
+export { FavMovieCard } from "./FavoritesMovieCard";
 export { Loader } from "./Loader";
 export { MovieCard } from "./MovieCard";
 export { MovieInfo } from "./MovieInfo";
