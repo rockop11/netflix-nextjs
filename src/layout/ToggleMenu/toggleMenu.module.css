@@ -35,11 +35,11 @@
   @keyframes fadeInTablet {
     0% {
       opacity: 1;
-      left: 100%;
+      right: -50px;
     }
     100% {
       opacity: 1;
-      left: 80%;
+      right: 0px;
     }
   }
 }

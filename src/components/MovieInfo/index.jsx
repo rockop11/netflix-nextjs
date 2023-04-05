@@ -20,6 +20,7 @@ export const MovieInfo = ({ movie }) => {
   const movieYear = movie.release_date.split("-")[0];
 
   const [containsMovie, setContainesMovie] = useState(null);
+  const [fav, setFav] = useState(false);
 
   const getFavoritesMovies = async () => {
     const moviesList = await getFavoritesMoviesFromFirestore(user.email);
@@ -29,6 +30,11 @@ export const MovieInfo = ({ movie }) => {
     setContainesMovie(isFavorite);
   };
 
+  const addMovieToFavsHandler = async () => {
+    await addMovieToFavorites(movie);
+    setFav(true);
+  };
+
   const handleCloseMovieDetail = () => {
     router.back();
   };
@@ -36,18 +42,15 @@ export const MovieInfo = ({ movie }) => {
   useEffect(() => {
     getFavoritesMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fav]);
 
   return (
     <div className={styles.container}>
       <div className={styles.closeModal} onClick={handleCloseMovieDetail}>
         <HiX size={"25px"} />
       </div>
-      <div
-        className={styles.iconContainer}
-        onClick={() => addMovieToFavorites(movie)}
-      >
-        {containsMovie ? (
+      <div className={styles.iconContainer} onClick={addMovieToFavsHandler}>
+        {containsMovie || fav ? (
           <HiStar size={"25px"} color="yellow" />
         ) : (
           <HiOutlineStar size={"20px"} />
