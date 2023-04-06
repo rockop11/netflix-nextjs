@@ -36,24 +36,26 @@ const FavoritesPage = () => {
   }
 
   return (
-    <div className={styles.container}>
-      {!firestoreData.length && <h3>Aún no has agregado Peliculas...</h3>}
+    <>
+      <div className={styles.container}>
+        {!firestoreData.length && <h3>Aún no has agregado Peliculas...</h3>}
 
-      {firestoreData &&
-        firestoreData.map((movie) => {
-          return (
-            <div key={movie.id} className={styles.movieInfoCard}>
-              <div
-                className={styles.iconContainer}
-                onClick={() => deleteMovieFromFavorites(movie.id)}
-              >
-                <HiTrash size={"25px"} />
+        {firestoreData &&
+          firestoreData.map((movie) => {
+            return (
+              <div key={movie.id} className={styles.movieInfoCard}>
+                <div
+                  className={styles.iconContainer}
+                  onClick={() => deleteMovieFromFavorites(movie.id)}
+                >
+                  <HiTrash size={"25px"} />
+                </div>
+                <FavMovieCard movie={movie} />
               </div>
-              <FavMovieCard movie={movie} />
-            </div>
-          );
-        })}
-    </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 

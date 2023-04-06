@@ -41,3 +41,16 @@
     height: 350px;
   }
 }
+
+@media (min-width: 1440px) {
+  .container {
+    min-height: 95vh;
+  }
+
+  .movieInfoCard {
+    border: 1px solid coral;
+    margin: 10px;
+    width: 260px;
+    height: 370px;
+  }
+}

@@ -1,7 +1,6 @@
 .container {
   background-color: #141414;
   width: 100%;
-  min-height: 92vh;
   position: relative;
   z-index: 2;
   border-radius: 15px 15px 0px 0px;
@@ -109,5 +108,25 @@
   .iconContainer,
   .closeModal {
     top: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .imageContainer {
+    width: 40%;
+  }
+
+  .container {
+    justify-content: space-around;
+  }
+}
+
+@media (min-width: 1440px) {
+  .imageContainer {
+    width: 30%;
+  }
+
+  .iconContainer {
+    left: 8%;
   }
 }
