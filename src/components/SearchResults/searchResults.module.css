@@ -14,7 +14,7 @@
   line-height: normal;
   padding: 7px 17px;
   width: 150px;
-  margin: 10px;
+  margin: 0 10px 15px;
 }
 
 .resultsContainer {
@@ -26,8 +26,10 @@
 }
 
 .movieContainer {
+  position: relative;
   margin: 0 auto 10px;
-  width: 45%;
+  width: 200px;
+  height: 310px;
 }
 
 @media (min-width: 768px) {
@@ -43,11 +45,12 @@
 
 @media (min-width: 1024px) {
   .movieContainer {
-    width: 20%;
-    margin: 25px;
+    width: 250px;
+    height: 360px;
+    margin: 5px;
   }
 
   .button {
-    margin-right: 3%;
+    margin-right: 8%;
   }
 }

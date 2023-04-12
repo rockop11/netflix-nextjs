@@ -72,33 +72,37 @@ export const MovieInfo = ({ movie }) => {
       <div className={styles.gradient} />
 
       <div className={styles.movieInfo}>
-        <div className={styles.leftSection}>
-          <p style={{ padding: "5px 10px" }}>
-            {movieYear} - {movie.runtime} min.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              padding: " 5px 10px",
-            }}
-          >
-            <HiThumbUp size={"20px"} />
-            <span style={{ paddingLeft: "8px" }}>{movie.vote_average}</span>
-          </div>
+        <p
+          style={{
+            marginBottom: "10px",
+          }}
+        >
+          {movieYear} - {movie.runtime} min.
+        </p>
 
-          <h3 className={styles.movieTitle}>{movie.title}</h3>
-          <p className={styles.movieOverview}>{movie.overview}</p>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <HiThumbUp size={"20px"} />
+          <span style={{ paddingLeft: "8px" }}>{movie.vote_average}</span>
         </div>
 
-        <div className={styles.rightSection}>
-          <>
-            <p style={{ color: "grey" }}>Géneros: </p>
-            {movie.genres.map((genre, i) => {
-              return <p key={i}>{genre.name}</p>;
-            })}
-          </>
-        </div>
+        <p style={{ color: "#c6bcbc", fontWeight: "bold", marginTop: "10px" }}>
+          Géneros:{" "}
+        </p>
+        {movie.genres.map((genre, i) => {
+          return (
+            <p key={i} style={{ fontSize: "14px" }}>
+              {genre.name}
+            </p>
+          );
+        })}
+
+        <h3 className={styles.movieTitle}>{movie.title}</h3>
+        <p className={styles.movieOverview}>{movie.overview}</p>
       </div>
     </div>
   );

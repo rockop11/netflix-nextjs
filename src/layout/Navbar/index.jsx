@@ -76,7 +76,7 @@ export const Navbar = () => {
               width={35}
               height={35}
               style={{
-                borderRadius: "8px",
+                borderRadius: "5px",
                 cursor: "pointer",
               }}
               alt={"profile-pic"}

@@ -16,8 +16,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  right: 5%;
-  top: 2%;
+  right: 2%;
+  top: 1%;
   z-index: 3;
 }
 
@@ -25,8 +25,8 @@
   width: 40px;
   height: 40px;
   position: absolute;
-  left: 5%;
-  top: 2%;
+  left: 2%;
+  top: 1%;
   background-color: #000;
   border-radius: 50%;
   display: flex;
@@ -53,26 +53,22 @@
 }
 
 .movieInfo {
-  padding-top: 20px;
-  display: flex;
+  margin-top: 10px;
+  padding: 0px 15px;
   width: 100%;
 }
 
 .movieTitle {
-  margin-top: 15px;
-  padding-left: 10px;
+  margin-top: 10px;
   font-size: 24px;
+  color: #c6bcbc;
 }
 
 .movieOverview {
   font-size: 14px;
+  line-height: 20px;
   margin-top: 10px;
-  padding-left: 10px;
   width: 70%;
-}
-
-.rightSection {
-  margin-right: 10px;
 }
 
 @media (min-width: 768px) {
@@ -86,7 +82,7 @@
   }
 
   .imageContainer {
-    width: 48%;
+    width: 55%;
     border-radius: 0px;
     margin-left: 25px;
     margin-top: 20px;
@@ -94,39 +90,35 @@
 
   .movieInfo {
     width: 48%;
-    display: block;
-    padding-left: 50px;
+    margin-top: 20px;
     padding-top: 30px;
-  }
-
-  .rightSection {
-    width: fit-content;
-    margin-top: 80px;
-    padding-left: 10px;
+    padding-left: 50px;
   }
 
   .iconContainer,
   .closeModal {
     top: 5%;
   }
+
+  .iconContainer {
+    left: 5%;
+  }
 }
 
 @media (min-width: 1024px) {
   .imageContainer {
-    width: 40%;
+    width: 50%;
   }
 
-  .container {
-    justify-content: space-around;
+  .movieInfo {
+    padding-left: 80px;
   }
 }
 
 @media (min-width: 1440px) {
   .imageContainer {
-    width: 30%;
-  }
-
-  .iconContainer {
-    left: 8%;
+    /* border: 1px solid lime; */
+    width: 50%;
+    height: 600px;
   }
 }
