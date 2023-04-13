@@ -51,21 +51,19 @@ const FavoritesPage = () => {
         {firestoreData &&
           firestoreData.map((movie) => {
             return (
-              <>
-                <div className={styles.movieInfoCard}>
-                  <div
-                    className={styles.iconContainer}
-                    onClick={() => deleteMovieFromFavorites(movie.id)}
-                  >
-                    <HiTrash size={"25px"} />
-                  </div>
-                  <Link href={`/${movie.id}`} key={movie.id}>
-                    <div className={styles.imageContainer}>
-                      <FavMovieCard movie={movie} />
-                    </div>
-                  </Link>
+              <div className={styles.movieInfoCard} key={movie.id}>
+                <div
+                  className={styles.iconContainer}
+                  onClick={() => deleteMovieFromFavorites(movie.id)}
+                >
+                  <HiTrash size={"25px"} />
                 </div>
-              </>
+                <Link href={`/${movie.id}`} key={movie.id}>
+                  <div className={styles.imageContainer}>
+                    <FavMovieCard movie={movie} />
+                  </div>
+                </Link>
+              </div>
             );
           })}
       </div>

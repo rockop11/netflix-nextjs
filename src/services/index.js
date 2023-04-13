@@ -6,7 +6,7 @@ const language = "&language=es-ES";
 
 export const getPopularMovies = async () => {
   const { data } = await axios(
-    `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}${language}`
+    `${process.env.TMDB_API_URL}/movie/popular?api_key=${process.env.TMDB_API_KEY}${language}`
   ).catch((err) => {
     console.log(err);
   });
@@ -15,7 +15,7 @@ export const getPopularMovies = async () => {
 
 export const getTopRatedMovies = async () => {
   const { data } = await axios(
-    `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}${language}`
+    `${process.env.TMDB_API_URL}/movie/top_rated?api_key=${process.env.TMDB_API_KEY}${language}`
   ).catch((err) => {
     console.log(err);
   });
@@ -24,7 +24,7 @@ export const getTopRatedMovies = async () => {
 
 export const getUpcomingMovies = async () => {
   const { data } = await axios(
-    `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}${language}`
+    `${process.env.TMDB_API_URL}/movie/upcoming?api_key=${process.env.TMDB_API_KEY}${language}`
   ).catch((err) => {
     console.log(err);
   });
