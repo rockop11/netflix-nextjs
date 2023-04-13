@@ -39,18 +39,18 @@
   }
 
   .button {
-    margin-right: 4%;
+    margin-right: 15px;
   }
 }
 
 @media (min-width: 1024px) {
   .movieContainer {
-    width: 250px;
-    height: 360px;
+    width: 220px;
+    height: 330px;
     margin: 5px;
   }
 
   .button {
-    margin-right: 8%;
+    margin-right: 15px;
   }
 }
