@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import Link from "next/link";
 import MoviesContext from "context/MoviesContext";
 //Components
 import { FavMovieCard } from "@components/index";
@@ -16,9 +17,11 @@ export const SearchResults = () => {
       <div className={styles.resultsContainer}>
         {searchResults.map((movie) => {
           return (
-            <div className={styles.movieContainer} key={movie.id}>
-              <FavMovieCard movie={movie} />
-            </div>
+            <Link href={`/${movie.id}`} key={movie.id}>
+              <div className={styles.movieContainer}>
+                <FavMovieCard movie={movie} />
+              </div>
+            </Link>
           );
         })}
       </div>
