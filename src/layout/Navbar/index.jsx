@@ -42,56 +42,57 @@ export const Navbar = () => {
   const image = { width: "100px", height: "40px", marginLeft: "15px" };
 
   return (
-    <nav className={styles.navbar}>
-      <ul className={styles.ul}>
-        {user && (
-          <BiMenu
-            size={"35px"}
-            onClick={handleNavMenu}
-            className={styles.menu}
-          />
-        )}
-        <Link href={"/"}>
-          <Image src={Logo} style={image} alt={"logo-netflix"} priority />
-        </Link>
-      </ul>
-
-      <ul className={styles.ul}>
-        {user ? (
-          <div className={styles.rightMenu}>
-            {!hideSearchBar && (
-              <form onSubmit={submitFormHandler}>
-                <input
-                  className={styles.input}
-                  type="text"
-                  placeholder="Buscar"
-                  onChange={searchValueHandler}
-                  ref={inputSearchRef}
-                />
-              </form>
-            )}
-            <Image
-              className={styles.image}
-              src={user.picture}
-              width={35}
-              height={35}
-              style={{
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-              alt={"profile-pic"}
-              priority
+    <>
+      <nav className={styles.navbar}>
+        <ul className={styles.ul}>
+          {user && (
+            <BiMenu
+              size={"35px"}
               onClick={handleNavMenu}
+              className={styles.menu}
             />
-          </div>
-        ) : (
-          <Link href={"/api/auth/login"}>
-            <Button label="Iniciar sesión" />
+          )}
+          <Link href={"/"}>
+            <Image src={Logo} style={image} alt={"logo-netflix"} priority />
           </Link>
-        )}
+        </ul>
 
-        {toggleMenu && <ToggleMenu handleCloseNavMenu={handleCloseNavMenu} />}
-      </ul>
-    </nav>
+        <ul className={styles.ul}>
+          {user ? (
+            <div className={styles.rightMenu}>
+              {!hideSearchBar && (
+                <form onSubmit={submitFormHandler}>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    placeholder="Buscar"
+                    onChange={searchValueHandler}
+                    ref={inputSearchRef}
+                  />
+                </form>
+              )}
+              <Image
+                className={styles.image}
+                src={user.picture}
+                width={35}
+                height={35}
+                style={{
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                }}
+                alt={"profile-pic"}
+                priority
+                onClick={handleNavMenu}
+              />
+            </div>
+          ) : (
+            <Link href={"/api/auth/login"}>
+              <Button label="Iniciar sesión" />
+            </Link>
+          )}
+        </ul>
+      </nav>
+      {toggleMenu && <ToggleMenu handleCloseNavMenu={handleCloseNavMenu} />}
+    </>
   );
 };

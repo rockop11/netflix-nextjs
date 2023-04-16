@@ -1,10 +1,9 @@
 .toggleMenu {
   background-color: #141414;
   color: #fff;
+  width: 150px;
   position: absolute;
   top: 50px;
-  left: 0px;
-  width: 50%;
   z-index: 3;
   animation: fadeIn 0.2s;
 }
@@ -24,11 +23,15 @@
   }
 }
 
+@media (max-width: 425px) {
+  .toggleMenu {
+    left: 0px;
+  }
+}
+
 @media (min-width: 768px) {
   .toggleMenu {
-    position: absolute;
-    width: 20%;
-    left: 80%;
+    right: 0px;
     animation: fadeInTablet 0.2s;
   }
 
@@ -37,6 +40,7 @@
       opacity: 1;
       right: -50px;
     }
+
     100% {
       opacity: 1;
       right: 0px;
