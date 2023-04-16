@@ -33,7 +33,7 @@ export const getUpcomingMovies = async () => {
 
 export const getMovieDetail = async (id) => {
   const { data } = await axios(
-    `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/${id}?api_key=${process.env.TMDB_API_KEY}${language}`
+    `${process.env.NEXT_PUBLIC_TMDB_API_URL}/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}${language}`
   ).catch((err) => {
     console.log(err);
   });

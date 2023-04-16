@@ -58,10 +58,8 @@ const FavoritesPage = () => {
                 >
                   <HiTrash size={"25px"} />
                 </div>
-                <Link href={`/${movie.id}`} key={movie.id}>
-                  <div className={styles.imageContainer}>
-                    <FavMovieCard movie={movie} />
-                  </div>
+                <Link href={`/${movie.id}`}>
+                  <FavMovieCard movie={movie} />
                 </Link>
               </div>
             );

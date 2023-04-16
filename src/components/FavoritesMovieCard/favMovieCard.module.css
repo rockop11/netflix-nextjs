@@ -1,0 +1,21 @@
+.container {
+  position: relative;
+  width: 90%;
+  height: 230px;
+  margin: 5px auto;
+}
+
+@media (min-width: 375px) {
+  .container {
+    height: 280px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 250px;
+    height: 350px;
+  }
+}
+
+/* vamos a tener que seguir haciendo mediaqueris de la imagen */
