@@ -17,11 +17,11 @@ export const SearchResults = () => {
       <div className={styles.resultsContainer}>
         {searchResults.map((movie) => {
           return (
-            <Link href={`/${movie.id}`} key={movie.id}>
-              <div className={styles.movieContainer}>
+            <div className={styles.movieContainer} key={movie.id}>
+              <Link href={`/${movie.id}`}>
                 <FavMovieCard movie={movie} />
-              </div>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>
